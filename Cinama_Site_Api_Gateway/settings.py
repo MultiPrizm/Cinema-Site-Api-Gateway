@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'InfoCenter',
+    'ReservationService',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +72,14 @@ TEMPLATES = [
     },
 ]
 
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.BCryptPasswordHasher',
+]
+
 WSGI_APPLICATION = 'Cinama_Site_Api_Gateway.wsgi.application'
 
 
@@ -80,10 +89,10 @@ WSGI_APPLICATION = 'Cinama_Site_Api_Gateway.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'DB_NAME',
-        'USER': 'DB_USER',
-        'PASSWORD': 'DB_PASSWORD',
-        'HOST': 'localhost',
+        'NAME': env["DB_NAME"],
+        'USER': env["DB_USER"],
+        'PASSWORD': env["DB_PASSWORD"],
+        'HOST': env["DB_HOST"],
         'PORT': '3306',
     }
 }
